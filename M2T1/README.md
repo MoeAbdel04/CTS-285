@@ -1,0 +1,2 @@
+- pip install virtualenv
+- cd M2T1
