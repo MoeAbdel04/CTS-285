@@ -2,18 +2,23 @@ Flask_Blog
 
 
 
-Install virtual env with: python -m virtualenv venv
+- Install virtual env with: python -m virtualenv venv
 
-source venv/bin/activate
+- source venv/bin/activate
 
-pip install flask
+- pip install flask
 
-pip freeze > requirements.txt
+- pip freeze > requirements.txt
 
-next time just run source line source venv/bin/activate
+- next time just run source line source venv/bin/activate
 
-flask --debug --app Hello run
+- cd (folder name) to run commands in the folder for the program
 
-control c to quit
+- flask --debug --app Hello run
 
-flask --debug --app app run
+- flask --debug --app app run
+
+- Run python init_db.py tio initialize the database
+
+- Control c to quit
+
