@@ -18,7 +18,7 @@ Flask_Blog
 
 - flask --debug --app app run
 
-- Run python init_db.py tio initialize the database
+- Run python init_db.py to initialize the database before debugging app
 
 - Control c to quit
 
