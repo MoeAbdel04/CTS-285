@@ -15,7 +15,7 @@
     {% endif %}
 
     <!-- Answer Form -->
-    <form id="answerForm" action="/check_answer" method="POST">
+    <form id="answerForm" method="POST">
         <label for="answer">Your answer:</label>
         <input type="text" id="answer" name="answer" required>
         <button type="submit" id="submitAnswerButton">Submit</button>
@@ -33,7 +33,20 @@
         const submitAnswerButton = document.getElementById('submitAnswerButton');
 
         answerForm.addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent form from submitting the traditional way
             submitAnswerButton.style.display = 'none';  // Hide the submit button
+            
+            // Send the form data using fetch API (AJAX)
+            const formData = new FormData(answerForm);
+            fetch('/check_answer', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.text())
+            .then(responseText => {
+                // Optionally, update the feedback in the UI (if necessary)
+                document.body.innerHTML = responseText;  // Update the entire body with the response (or handle better as needed)
+            });
         });
 
         // Reset the submit button when Next Question is clicked
