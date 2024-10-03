@@ -91,12 +91,14 @@ def login():
 
         if user and check_password_hash(user.password, password):
             login_user(user)
-            flash('Login successful!', 'success')
-            return redirect(url_for('index'))  # Redirect to the Answer Checker homepage after login
+            flash('Login successful! Redirecting...', 'success')
+            print('Login successful!')  # Debugging print
+            return redirect(url_for('index'))  # Redirect to the homepage
         else:
             flash('Login failed. Please check your username and password.', 'danger')
     
     return render_template('login.html')
+
 
 # User logout route
 @app.route('/logout')
