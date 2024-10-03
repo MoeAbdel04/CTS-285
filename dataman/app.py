@@ -30,12 +30,34 @@ def load_user(user_id):
 with app.app_context():
     db.create_all()
 
-# Home route (only accessible when logged in)
+# Home route for the Answer Checker (after login)
 @app.route('/')
 @login_required
 def index():
     session.clear()  # Reset session for new practice session
-    return render_template('index.html', username=current_user.username)
+    return redirect(url_for('set_difficulty'))  # Redirecting to the answer checker homepage
+
+# Set difficulty page for the Answer Checker
+@app.route('/set_difficulty', methods=['GET', 'POST'])
+@login_required
+def set_difficulty():
+    # Logic for setting difficulty
+    if request.method == 'POST':
+        difficulty = request.form['difficulty']
+        session['difficulty'] = difficulty
+        return redirect(url_for('generate_problem'))
+    return render_template('set_difficulty.html')
+
+# Generate problem route (Answer Checker)
+@app.route('/generate_problem')
+@login_required
+def generate_problem():
+    # Logic to generate math problems
+    problem = "2 + 2"
+    correct_answer = 4
+    session['current_problem'] = problem
+    session['correct_answer'] = correct_answer
+    return render_template('result.html', problem=problem)
 
 # User registration route
 @app.route('/signup', methods=['GET', 'POST'])
@@ -64,7 +86,7 @@ def login():
         if user and check_password_hash(user.password, password):
             login_user(user)
             flash('Login successful!', 'success')
-            return redirect(url_for('index'))
+            return redirect(url_for('index'))  # Redirect to the Answer Checker homepage after login
         else:
             flash('Login failed. Please check your username and password.', 'danger')
     
@@ -77,12 +99,6 @@ def logout():
     logout_user()
     flash('You have been logged out.', 'info')
     return redirect(url_for('login'))
-
-# Example protected route
-@app.route('/protected')
-@login_required
-def protected():
-    return 'This is a protected route! Only logged in users can see this.'
 
 if __name__ == '__main__':
     app.run(debug=True)
