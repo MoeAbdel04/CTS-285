@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Math Practice - Solve Problem</title>
+</head>
+<body>
+    <h1>Solve the problem:</h1>
+    <p>{{ problem }}</p>
+    {% if feedback %}
+        <p>{{ feedback }}</p>
+    {% endif %}
+    <form action="/check_answer" method="POST">
+        <label for="answer">Your answer:</label>
+        <input type="text" id="answer" name="answer" required>
+        <button type="submit">Submit</button>
+    </form>
+    <br>
+    <a href="/">Back to difficulty selection</a>
+</body>
+</html>
