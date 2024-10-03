@@ -2,9 +2,11 @@ from flask import Flask, render_template, request, redirect, url_for, session, f
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
+from datetime import timedelta
 
 app = Flask(__name__)
 app.secret_key = 'your_secret_key'
+app.config['PERMANENT_SESSION_LIFETIME'] = timedelta(minutes=30)  # Keep session alive for 30 minutes
 
 # Database setup (SQLite)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
@@ -34,6 +36,7 @@ with app.app_context():
 @app.route('/')
 @login_required
 def index():
+    print(f'User is authenticated: {current_user.is_authenticated}')  # Debugging
     session.clear()  # Reset session for new practice session
     return redirect(url_for('set_difficulty'))  # Redirecting to the answer checker homepage
 
@@ -90,17 +93,14 @@ def login():
         user = User.query.filter_by(username=username).first()
 
         if user and check_password_hash(user.password, password):
-            login_user(user)
+            login_user(user, remember=True)  # Keep the user logged in across browser sessions
+            session.permanent = True  # Set session to be permanent
             flash('Login successful! Redirecting...', 'success')
-            print(f'User {user.username} is authenticated: {current_user.is_authenticated}')  # Debugging
-            return redirect(url_for('index'))
+            return redirect(url_for('index'))  # Redirect to the Answer Checker homepage after login
         else:
             flash('Login failed. Please check your username and password.', 'danger')
-            print("Login failed.")  # Debugging
     
     return render_template('login.html')
-
-
 
 # User logout route
 @app.route('/logout')
@@ -109,12 +109,6 @@ def logout():
     logout_user()
     flash('You have been logged out.', 'info')
     return redirect(url_for('login'))
-
-# Example protected route
-@app.route('/protected')
-@login_required
-def protected():
-    return 'This is a protected route! Only logged in users can see this.'
 
 if __name__ == '__main__':
     app.run(debug=True)
