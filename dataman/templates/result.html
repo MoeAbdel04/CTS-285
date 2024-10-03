@@ -9,19 +9,38 @@
 <body>
     <h1>Solve the problem:</h1>
     <p>{{ problem }}</p>
+    
     {% if feedback %}
         <p>{{ feedback }}</p>
     {% endif %}
-    <form action="/check_answer" method="POST">
+
+    <!-- Answer Form -->
+    <form id="answerForm" action="/check_answer" method="POST">
         <label for="answer">Your answer:</label>
         <input type="text" id="answer" name="answer" required>
-        <button type="submit">Submit</button>
+        <button type="submit" id="submitAnswerButton">Submit</button>
     </form>
 
+    <!-- Next Question / Quit Form -->
     <form action="/next_question" method="POST">
-        <button type="submit" name="next" value="Next Question">Next Question</button>
+        <button type="submit" name="next" value="Next Question" id="nextQuestionButton">Next Question</button>
         <button type="submit" name="quit" value="Quit">Quit</button>
     </form>
-    <br>
+
+    <script>
+        // Hide the submit button after form submission
+        const answerForm = document.getElementById('answerForm');
+        const submitAnswerButton = document.getElementById('submitAnswerButton');
+
+        answerForm.addEventListener('submit', function(event) {
+            submitAnswerButton.style.display = 'none';  // Hide the submit button
+        });
+
+        // Reset the submit button when Next Question is clicked
+        const nextQuestionButton = document.getElementById('nextQuestionButton');
+        nextQuestionButton.addEventListener('click', function() {
+            submitAnswerButton.style.display = 'block';  // Show the submit button again
+        });
+    </script>
 </body>
 </html>
