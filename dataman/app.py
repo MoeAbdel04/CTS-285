@@ -78,13 +78,14 @@ def show_history():
     score = session.get('score', 0)
     questions = session.get('questions', [])
     
-    # Calculate grade as a percentage
+    # Calculate grade as a percentage and round to 2 decimal places
     if total_questions > 0:
-        grade = (score / total_questions) * 100
+        grade = round((score / total_questions) * 100, 2)
     else:
         grade = 0
 
     return render_template('history.html', questions=questions, score=score, total_questions=total_questions, grade=grade)
+
 
 if __name__ == '__main__':
     app.run(debug=True)
