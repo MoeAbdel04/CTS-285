@@ -92,12 +92,14 @@ def login():
         if user and check_password_hash(user.password, password):
             login_user(user)
             flash('Login successful! Redirecting...', 'success')
-            print('Login successful!')  # Debugging print
-            return redirect(url_for('index'))  # Redirect to the homepage
+            print(f'User {user.username} is authenticated: {current_user.is_authenticated}')  # Debugging
+            return redirect(url_for('index'))
         else:
             flash('Login failed. Please check your username and password.', 'danger')
+            print("Login failed.")  # Debugging
     
     return render_template('login.html')
+
 
 
 # User logout route
