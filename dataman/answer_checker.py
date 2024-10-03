@@ -1,3 +1,5 @@
+import random
+
 # User Story 1: As a student, I want to input my answers for math problems, so that I can quickly check if I am correct.
 class Student:
     def __init__(self, name):
@@ -10,7 +12,6 @@ class Student:
 # User Story 2: As a parent, I want to see the results of my child’s answers, so that I can understand their progress in math.
 class Parent:
     def __init__(self, name, student):
-
         self.name = name
         self.student = student
 
@@ -49,6 +50,30 @@ class Teacher:
         }
         print(f"Explanation for problem {problem}: {explanations.get(problem, 'No explanation available.')}")
 
+# Ensure division problems don't result in fractions
+def generate_problem(difficulty="easy"):
+    if difficulty == "easy":
+        num1 = random.randint(1, 10)
+        num2 = random.randint(1, 10)
+        operation = random.choice(["+", "-"])
+    elif difficulty == "medium":
+        num1 = random.randint(10, 50)
+        num2 = random.randint(10, 50)
+        operation = random.choice(["+", "-", "*"])
+    elif difficulty == "hard":
+        num1 = random.randint(50, 100)
+        num2 = random.randint(1, 50)  # To avoid division by zero
+        operation = random.choice(["+", "-", "*", "/"])
+        # Ensure division results in an integer by making num1 divisible by num2
+        if operation == "/":
+            num1 = num2 * random.randint(1, 10)
+    else:
+        return "Invalid difficulty level."
+
+    problem = f"{num1} {operation} {num2}"
+    correct_answer = eval(problem)
+    return problem, correct_answer
+
 # Example usage:
 
 # Creating objects
@@ -56,12 +81,13 @@ student = Student("Alice")
 parent = Parent("Bob", student)
 teacher = Teacher("Mrs. Smith")
 
+# Generate a math problem with difficulty level 'medium'
+problem, correct_answer = generate_problem(difficulty="medium")
+
 # Student inputs an answer
-problem = "2+2"
-student_answer = student.input_answer(problem, 5)
+student_answer = student.input_answer(problem, 80)
 
 # Parent checks the result
-correct_answer = 4
 parent.view_results(problem, correct_answer, student_answer)
 
 # Teacher gives feedback
