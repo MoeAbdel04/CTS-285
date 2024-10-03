@@ -54,11 +54,53 @@ def set_difficulty():
 @app.route('/generate_problem')
 @login_required
 def generate_problem():
-    problem = "2 + 2"
+    problem = "2 + 2"  # You can replace this with dynamic problem generation based on difficulty
     correct_answer = 4
     session['current_problem'] = problem
     session['correct_answer'] = correct_answer
     return render_template('result.html', problem=problem)
+
+# Check answer route
+@app.route('/check_answer', methods=['POST'])
+@login_required
+def check_answer():
+    student_answer = request.form['answer']
+    feedback = ''
+    
+    try:
+        student_answer = float(student_answer)
+        correct_answer = session.get('correct_answer')
+
+        # Update session tracking
+        if 'total_questions' not in session:
+            session['total_questions'] = 0
+        if 'score' not in session:
+            session['score'] = 0
+
+        session['total_questions'] += 1
+
+        if student_answer == correct_answer:
+            feedback = "Correct! Well done!"
+            session['score'] += 1
+            result = 'Correct'
+        else:
+            feedback = f"Incorrect. The correct answer was {correct_answer}."
+            result = 'Incorrect'
+    except ValueError:
+        feedback = "Please enter a valid number."
+        result = 'Invalid'
+
+    # Append the result to the session's question history
+    if 'questions' not in session:
+        session['questions'] = []
+
+    session['questions'].append({
+        'problem': session.get('current_problem'),
+        'answer': student_answer,
+        'result': result
+    })
+
+    return render_template('result.html', problem=session['current_problem'], feedback=feedback)
 
 # User registration route
 @app.route('/signup', methods=['GET', 'POST'])
