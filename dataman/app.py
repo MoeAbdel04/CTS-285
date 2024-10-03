@@ -41,7 +41,6 @@ def index():
 @app.route('/set_difficulty', methods=['GET', 'POST'])
 @login_required
 def set_difficulty():
-    # Logic for setting difficulty
     if request.method == 'POST':
         difficulty = request.form['difficulty']
         session['difficulty'] = difficulty
@@ -52,7 +51,6 @@ def set_difficulty():
 @app.route('/generate_problem')
 @login_required
 def generate_problem():
-    # Logic to generate math problems
     problem = "2 + 2"
     correct_answer = 4
     session['current_problem'] = problem
@@ -65,11 +63,19 @@ def signup():
     if request.method == 'POST':
         username = request.form['username']
         password = request.form['password']
-        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
         
-        user = User(username=username, password=hashed_password)
-        db.session.add(user)
+        # Check if the username already exists
+        existing_user = User.query.filter_by(username=username).first()
+        if existing_user:
+            flash('Username already exists. Please choose a different one.', 'danger')
+            return redirect(url_for('signup'))
+        
+        # If username doesn't exist, create a new user
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
+        new_user = User(username=username, password=hashed_password)
+        db.session.add(new_user)
         db.session.commit()
+        
         flash('Account created successfully! Please log in.', 'success')
         return redirect(url_for('login'))
     
@@ -99,6 +105,12 @@ def logout():
     logout_user()
     flash('You have been logged out.', 'info')
     return redirect(url_for('login'))
+
+# Example protected route
+@app.route('/protected')
+@login_required
+def protected():
+    return 'This is a protected route! Only logged in users can see this.'
 
 if __name__ == '__main__':
     app.run(debug=True)
