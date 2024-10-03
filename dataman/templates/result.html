@@ -9,51 +9,19 @@
 <body>
     <h1>Solve the problem:</h1>
     <p>{{ problem }}</p>
-    
     {% if feedback %}
         <p>{{ feedback }}</p>
     {% endif %}
-
-    <!-- Answer Form -->
-    <form id="answerForm" method="POST">
+    <form action="/check_answer" method="POST">
         <label for="answer">Your answer:</label>
         <input type="text" id="answer" name="answer" required>
-        <button type="submit" id="submitAnswerButton">Submit</button>
+        <button type="submit">Submit</button>
     </form>
 
-    <!-- Next Question / Quit Form -->
     <form action="/next_question" method="POST">
-        <button type="submit" name="next" value="Next Question" id="nextQuestionButton">Next Question</button>
+        <button type="submit" name="next" value="Next Question">Next Question</button>
         <button type="submit" name="quit" value="Quit">Quit</button>
     </form>
-
-    <script>
-        // Hide the submit button after form submission
-        const answerForm = document.getElementById('answerForm');
-        const submitAnswerButton = document.getElementById('submitAnswerButton');
-
-        answerForm.addEventListener('submit', function(event) {
-            event.preventDefault();  // Prevent form from submitting the traditional way
-            submitAnswerButton.style.display = 'none';  // Hide the submit button
-            
-            // Send the form data using fetch API (AJAX)
-            const formData = new FormData(answerForm);
-            fetch('/check_answer', {
-                method: 'POST',
-                body: formData
-            })
-            .then(response => response.text())
-            .then(responseText => {
-                // Optionally, update the feedback in the UI (if necessary)
-                document.body.innerHTML = responseText;  // Update the entire body with the response (or handle better as needed)
-            });
-        });
-
-        // Reset the submit button when Next Question is clicked
-        const nextQuestionButton = document.getElementById('nextQuestionButton');
-        nextQuestionButton.addEventListener('click', function() {
-            submitAnswerButton.style.display = 'block';  // Show the submit button again
-        });
-    </script>
+    <br>
 </body>
 </html>
