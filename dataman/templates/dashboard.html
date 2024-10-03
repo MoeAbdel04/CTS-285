@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Welcome, {{ current_user.username }}!</h2>
+    <p>Score: {{ score }} / {{ total_questions }}</p>
+    <h3>Your History</h3>
+    <pre>{{ history }}</pre>
+    <a href="{{ url_for('generate_problem') }}">Solve a New Problem</a>
+    <form id="answer-form">
+        <input type="text" id="answer" placeholder="Enter your answer">
+        <button type="submit">Submit Answer</button>
+    </form>
+    <div id="feedback"></div>
+    <script>
+        document.getElementById('answer-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const answer = document.getElementById('answer').value;
+            fetch('/check_answer', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ answer: answer })
+            })
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('feedback').innerHTML = 'Feedback: ' + data.feedback;
+            });
+        });
+    </script>
+{% endblock %}
