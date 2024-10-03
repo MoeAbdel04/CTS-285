@@ -65,13 +65,11 @@ button {
     transition: background-color 0.3s, transform 0.3s;
 }
 
-/* Button Hover Effect */
 button:hover {
     background-color: #45a049;
     transform: scale(1.05);
 }
 
-/* Back Link */
 a {
     text-align: center;
     display: block;
@@ -87,7 +85,6 @@ a:hover {
     color: #0056b3;
 }
 
-/* Table Styling */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -103,7 +100,6 @@ th {
     background-color: #f8f8f8;
 }
 
-/* Animations */
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
@@ -114,7 +110,6 @@ th {
     100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Input and Select Focus */
 input:focus, select:focus {
     border-color: #4CAF50;
     outline: none;
