@@ -5,24 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Practice - Set Difficulty</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" id="theme-style">
-    <script>
-        function setTheme(theme) {
-            document.documentElement.setAttribute('data-theme', theme);
-        }
-
-        document.addEventListener('DOMContentLoaded', (event) => {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            setTheme(savedTheme);
-            document.getElementById('theme').value = savedTheme;
-        });
-
-        function changeTheme(event) {
-            const selectedTheme = event.target.value;
-            setTheme(selectedTheme);
-            localStorage.setItem('theme', selectedTheme);
-        }
-    </script>
+    <script src="{{ url_for('static', filename='js/theme.js') }}" defer></script>
 </head>
 <body>
     <h1>Welcome to Math Practice!</h1>
@@ -37,7 +20,7 @@
     </form>
     <br>
     <label for="theme">Select theme:</label>
-    <select name="theme" id="theme" aria-label="Select theme" onchange="changeTheme(event)">
+    <select name="theme" id="theme" aria-label="Select theme">
         <option value="light">Light</option>
         <option value="dark">Dark</option>
     </select>

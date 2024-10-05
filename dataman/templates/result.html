@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Practice - Solve Problem</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script src="{{ url_for('static', filename='js/theme.js') }}" defer></script>
 </head>
 <body>
     <h1>Solve the problem:</h1>
@@ -23,5 +24,10 @@
         <button type="submit" name="quit" value="Quit" aria-label="Quit">Quit</button>
     </form>
     <br>
+    <label for="theme">Select theme:</label>
+    <select name="theme" id="theme" aria-label="Select theme">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
 </body>
 </html>
