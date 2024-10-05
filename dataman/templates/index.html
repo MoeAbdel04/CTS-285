@@ -8,12 +8,7 @@
     <link rel="stylesheet" id="theme-style">
     <script>
         function setTheme(theme) {
-            const themeStyle = document.getElementById('theme-style');
-            if (theme === 'dark') {
-                themeStyle.href = "{{ url_for('static', filename='css/dark-theme.css') }}";
-            } else {
-                themeStyle.href = "{{ url_for('static', filename='css/light-theme.css') }}";
-            }
+            document.documentElement.setAttribute('data-theme', theme);
         }
 
         document.addEventListener('DOMContentLoaded', (event) => {
