@@ -168,3 +168,22 @@ form > div {
     margin-top: -10px;
     margin-bottom: 10px;
 }
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    form, table {
+        width: 90%;
+    }
+
+    button {
+        font-size: 1rem;
+    }
+}

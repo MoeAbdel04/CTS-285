@@ -15,12 +15,12 @@
     <form action="/check_answer" method="POST">
         <label for="answer">Your answer:</label>
         <input type="text" id="answer" name="answer" required>
-        <button type="submit">Submit</button>
+        <button type="submit" aria-label="Submit Answer">Submit</button>
     </form>
 
     <form action="/next_question" method="POST">
-        <button type="submit" name="next" value="Next Question">Next Question</button>
-        <button type="submit" name="quit" value="Quit">Quit</button>
+        <button type="submit" name="next" value="Next Question" aria-label="Next Question">Next Question</button>
+        <button type="submit" name="quit" value="Quit" aria-label="Quit">Quit</button>
     </form>
     <br>
 </body>
