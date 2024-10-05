@@ -1,23 +1,39 @@
+/* Define CSS Variables */
+:root {
+    --primary-color: #4CAF50;
+    --primary-color-hover: #45a049;
+    --secondary-color: #007BFF;
+    --secondary-color-hover: #0056b3;
+    --background-color: #f0f4f7;
+    --font-color: #333;
+    --light-font-color: #555;
+    --border-color: #ddd;
+    --box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    --transition-duration: 0.3s;
+    --base-padding: 20px;
+    --base-margin: 20px;
+}
+
 /* General Styling */
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f0f4f7;
+    background-color: var(--background-color);
     margin: 0;
-    padding: 20px;
-    color: #333;
-    transition: background-color 0.3s ease-in-out;
+    padding: var(--base-padding);
+    color: var(--font-color);
+    transition: background-color var(--transition-duration) ease-in-out;
 }
 
 h1, h2 {
-    color: #333;
+    color: var(--font-color);
     text-align: center;
-    margin-bottom: 20px;
+    margin-bottom: var(--base-margin);
     font-weight: 300;
 }
 
 h1 {
     font-size: 2.5rem;
-    animation: fadeIn 1s ease-in-out;
+    animation: fadeIn var(--transition-duration) ease-in-out;
 }
 
 h2 {
@@ -28,61 +44,61 @@ h2 {
 form, table {
     max-width: 500px;
     margin: 0 auto;
-    padding: 20px;
+    padding: var(--base-padding);
     background-color: #fff;
     border-radius: 8px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    animation: fadeInUp 0.8s ease-out;
+    box-shadow: var(--box-shadow);
+    animation: fadeInUp var(--transition-duration) ease-out;
 }
 
 label {
     font-size: 1.2rem;
     display: block;
     margin-bottom: 10px;
-    color: #555;
+    color: var(--light-font-color);
 }
 
-input[type="text"], select {
+input[type="text"], input[type="number"], textarea, select {
     padding: 10px;
     font-size: 1rem;
     margin: 10px 0;
     width: 100%;
-    border: 1px solid #ddd;
+    border: 1px solid var(--border-color);
     border-radius: 4px;
     box-sizing: border-box;
 }
 
 button {
     padding: 10px 20px;
-    background-color: #4CAF50;
+    background-color: var(--primary-color);
     color: white;
     border: none;
     cursor: pointer;
     font-size: 1.2rem;
     width: 100%;
     border-radius: 4px;
-    margin-top: 20px;
-    transition: background-color 0.3s, transform 0.3s;
+    margin-top: var(--base-margin);
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
 }
 
 button:hover {
-    background-color: #45a049;
+    background-color: var(--primary-color-hover);
     transform: scale(1.05);
 }
 
 a {
     text-align: center;
     display: block;
-    color: #007BFF;
+    color: var(--secondary-color);
     text-decoration: none;
-    margin-top: 20px;
+    margin-top: var(--base-margin);
     font-size: 1.2rem;
-    animation: fadeInUp 0.8s ease-out;
+    animation: fadeInUp var(--transition-duration) ease-out;
 }
 
 a:hover {
     text-decoration: underline;
-    color: #0056b3;
+    color: var(--secondary-color-hover);
 }
 
 table {
@@ -93,13 +109,14 @@ table {
 th, td {
     padding: 10px;
     text-align: left;
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid var(--border-color);
 }
 
 th {
     background-color: #f8f8f8;
 }
 
+/* Animations */
 @keyframes fadeIn {
     0% { opacity: 0; }
     100% { opacity: 1; }
@@ -110,7 +127,44 @@ th {
     100% { opacity: 1; transform: translateY(0); }
 }
 
+/* Input Focus Styles */
 input:focus, select:focus {
-    border-color: #4CAF50;
+    border-color: var(--primary-color);
     outline: none;
+}
+
+/* Additional Styling */
+textarea {
+    resize: vertical;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form > div {
+    margin-bottom: 15px;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: -10px;
+    margin-bottom: 10px;
 }
