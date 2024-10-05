@@ -10,3 +10,5 @@ Dataman Project --- Answer checker web app
 - when user quits it displays summary of question history with a grade
 
 - used some basic animations and hover effects for buttons
+
+- flask --debug --app app run
