@@ -5,6 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Practice - Set Difficulty</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" id="theme-style">
+    <script>
+        function setTheme(theme) {
+            const themeStyle = document.getElementById('theme-style');
+            if (theme === 'dark') {
+                themeStyle.href = "{{ url_for('static', filename='css/dark-theme.css') }}";
+            } else {
+                themeStyle.href = "{{ url_for('static', filename='css/light-theme.css') }}";
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            setTheme(savedTheme);
+            document.getElementById('theme').value = savedTheme;
+        });
+
+        function changeTheme(event) {
+            const selectedTheme = event.target.value;
+            setTheme(selectedTheme);
+            localStorage.setItem('theme', selectedTheme);
+        }
+    </script>
 </head>
 <body>
     <h1>Welcome to Math Practice!</h1>
@@ -17,5 +40,11 @@
         </select>
         <button type="submit" aria-label="Start Practice">Start Practice</button>
     </form>
+    <br>
+    <label for="theme">Select theme:</label>
+    <select name="theme" id="theme" aria-label="Select theme" onchange="changeTheme(event)">
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+    </select>
 </body>
 </html>
