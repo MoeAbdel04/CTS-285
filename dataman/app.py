@@ -46,7 +46,7 @@ def register():
         username = request.form.get('username')
         email = request.form.get('email')
         password = request.form.get('password')
-        hashed_password = generate_password_hash(password, method='sha256')
+        hashed_password = generate_password_hash(password, method='pbkdf2:sha256', salt_length=8)
         user = User(username=username, email=email, password=hashed_password)
         db.session.add(user)
         db.session.commit()
