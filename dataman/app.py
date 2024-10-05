@@ -1,8 +1,9 @@
+import os
 from flask import Flask, render_template, request, redirect, url_for, session
 from math_practice import MathPractice, Parent
 
 app = Flask(__name__)
-app.secret_key = 'your_secret_key'  # Needed for session management
+app.secret_key = os.getenv('SECRET_KEY', 'your_default_secret_key')  # Needed for session management
 
 # Global variables to hold the current state
 math_practice = MathPractice()
@@ -10,14 +11,18 @@ parent = Parent("Bob")
 
 @app.route('/')
 def index():
-    # Reset session for new practice session
-    session.clear()
+    # Reset specific session data for new practice session
+    session.pop('questions', None)
+    session.pop('score', None)
+    session.pop('total_questions', None)
     return render_template('index.html')
 
 @app.route('/set_difficulty', methods=['POST'])
 def set_difficulty():
     global math_practice, parent
-    difficulty = request.form['difficulty']
+    difficulty = request.form.get('difficulty')
+    if difficulty is None:
+        return "Difficulty not specified", 400
     parent.set_difficulty(math_practice, difficulty)
     session['questions'] = []  # Start tracking questions and answers
     session['score'] = 0  # Start tracking score
@@ -33,9 +38,12 @@ def generate_problem():
 
 @app.route('/check_answer', methods=['POST'])
 def check_answer():
-    student_answer = request.form['answer']
+    student_answer = request.form.get('answer')
     feedback = ''
     
+    if student_answer is None:
+        return "Answer not provided", 400
+
     try:
         student_answer = float(student_answer)
         correct_answer = session.get('correct_answer')
