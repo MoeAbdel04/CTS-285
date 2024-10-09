@@ -30,21 +30,18 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    box-sizing: border-box;
 }
 
 .container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     max-width: 800px;
-    width: 90%;
+    width: 100%;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     padding: var(--base-padding);
-    overflow-y: auto;
-    max-height: 90vh;
 }
 
 h1, h2 {
@@ -202,8 +199,11 @@ tr:nth-child(even) {
 
 /* Responsive Design */
 @media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+
     .container {
-        width: 95%;
         padding: 15px;
     }
 
