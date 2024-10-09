@@ -19,7 +19,7 @@ body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background-color: var(--background-color);
     margin: 0;
-    padding: var(--base-padding);
+    padding: 0;
     color: var(--font-color);
     transition: background-color var(--transition-duration) ease-in-out;
     display: flex;
@@ -29,8 +29,8 @@ body {
 }
 
 .container {
-    max-width: 500px;
-    width: 100%;
+    max-width: 400px;
+    width: 90%;
     margin: 0 auto;
     padding: var(--base-padding);
     background-color: #fff;
@@ -39,42 +39,30 @@ body {
     animation: fadeInUp var(--transition-duration) ease-out;
 }
 
-h1, h2 {
+h1 {
     color: var(--font-color);
     text-align: center;
     margin-bottom: var(--base-margin);
     font-weight: 300;
-}
-
-h1 {
-    font-size: 2.5rem;
+    font-size: 2rem;
     animation: fadeIn var(--transition-duration) ease-in-out;
 }
 
-h2 {
-    font-size: 1.8rem;
-}
-
-.problem {
-    font-size: 1.5rem;
-    text-align: center;
-    margin-bottom: var(--base-margin);
-    padding: 10px;
-    background-color: #f8f8f8;
-    border-radius: 4px;
+form {
+    display: flex;
+    flex-direction: column;
 }
 
 label {
-    font-size: 1.2rem;
-    display: block;
-    margin-bottom: 10px;
+    font-size: 1rem;
+    margin-bottom: 5px;
     color: var(--light-font-color);
 }
 
-input[type="text"], input[type="number"], textarea, select {
+select, input[type="text"], input[type="number"] {
     padding: 10px;
     font-size: 1rem;
-    margin: 10px 0;
+    margin-bottom: 15px;
     width: 100%;
     border: 1px solid var(--border-color);
     border-radius: 4px;
@@ -87,46 +75,15 @@ button {
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1rem;
     width: 100%;
     border-radius: 4px;
-    margin-top: var(--base-margin);
     transition: background-color var(--transition-duration), transform var(--transition-duration);
 }
 
 button:hover {
     background-color: var(--primary-color-hover);
     transform: scale(1.05);
-}
-
-a {
-    text-align: center;
-    display: block;
-    color: var(--secondary-color);
-    text-decoration: none;
-    margin-top: var(--base-margin);
-    font-size: 1.2rem;
-    animation: fadeInUp var(--transition-duration) ease-out;
-}
-
-a:hover {
-    text-decoration: underline;
-    color: var(--secondary-color-hover);
-}
-
-table {
-    width: 100%;
-    border-collapse: collapse;
-}
-
-th, td {
-    padding: 10px;
-    text-align: left;
-    border-bottom: 1px solid var(--border-color);
-}
-
-th {
-    background-color: #f8f8f8;
 }
 
 /* Animations */
@@ -141,49 +98,7 @@ th {
 }
 
 /* Input Focus Styles */
-input:focus, select:focus {
+select:focus, input:focus {
     border-color: var(--primary-color);
     outline: none;
-}
-
-/* Additional Styling */
-textarea {
-    resize: vertical;
-}
-
-input[type="number"] {
-    -moz-appearance: textfield;
-}
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-form > div {
-    margin-bottom: 15px;
-}
-
-.error-message {
-    color: red;
-    font-size: 0.9rem;
-    margin-top: -10px;
-    margin-bottom: 10px;
-}
-
-.feedback {
-    text-align: center;
-    font-weight: bold;
-    margin-bottom: var(--base-margin);
 }
