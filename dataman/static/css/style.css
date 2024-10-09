@@ -58,7 +58,7 @@ label {
     color: var(--light-font-color);
 }
 
-input[type="text"], input[type="number"], input[type="password"], textarea, select {
+input[type="text"], input[type="number"], textarea, select {
     padding: 10px;
     font-size: 1rem;
     margin: 10px 0;
@@ -163,14 +163,7 @@ form > div {
 }
 
 .error-message {
-    color: #d32f2f;
-    font-size: 0.9rem;
-    margin-top: -10px;
-    margin-bottom: 10px;
-}
-
-.success-message {
-    color: #388e3c;
+    color: red;
     font-size: 0.9rem;
     margin-top: -10px;
     margin-bottom: 10px;
