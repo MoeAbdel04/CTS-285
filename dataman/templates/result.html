@@ -22,5 +22,15 @@
         <button type="submit" name="next" value="Next Question">Next Question</button>
         <button type="submit" name="quit" value="Quit">Quit</button>
     </form>
+    {% with messages = get_flashed_messages(with_categories=true) %}
+        {% if messages %}
+            {% for category, message in messages %}
+                <p class="{{ category }}-message">{{ message }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+    {% if session['user_id'] %}
+        <a href="{{ url_for('logout') }}">Logout</a>
+    {% endif %}
 </body>
 </html>
