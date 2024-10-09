@@ -21,7 +21,7 @@ body {
     font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: var(--gradient-bg);
     margin: 0;
-    padding: var(--base-padding);
+    padding: 0;
     color: var(--font-color);
     transition: background-color var(--transition-duration) ease-in-out;
     min-height: 100vh;
@@ -33,12 +33,12 @@ body {
 
 .container {
     max-width: 800px;
-    width: 100%;
+    width: 90%;
     background-color: rgba(255, 255, 255, 0.9);
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     padding: var(--base-padding);
-    margin-bottom: var(--base-margin);
+    margin: var(--base-margin) auto;
 }
 
 h1, h2 {
@@ -196,11 +196,8 @@ tr:nth-child(even) {
 
 /* Responsive Design */
 @media (max-width: 600px) {
-    body {
-        padding: 10px;
-    }
-    
     .container {
+        width: 95%;
         padding: 15px;
     }
 
