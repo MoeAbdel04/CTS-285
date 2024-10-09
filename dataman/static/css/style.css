@@ -1,5 +1,4 @@
-/* Enhanced CSS for Math Practice App with Narrower, Taller Containers */
-
+/* Define CSS Variables */
 :root {
     --primary-color: #4CAF50;
     --primary-color-hover: #45a049;
@@ -9,169 +8,163 @@
     --font-color: #333;
     --light-font-color: #555;
     --border-color: #ddd;
-    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    --box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
     --transition-duration: 0.3s;
     --base-padding: 20px;
     --base-margin: 20px;
-    --border-radius: 8px;
-    --gradient-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
+/* General Styling */
 body {
-    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background: var(--gradient-bg);
-    color: var(--font-color);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: var(--background-color);
     margin: 0;
-    padding: 20px;
-    min-height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    box-sizing: border-box;
-}
-
-.wrapper {
-    max-width: 600px; /* Reduced from 1000px */
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.container {
-    background-color: #ffffff;
-    border-radius: var(--border-radius);
-    box-shadow: var(--box-shadow);
-    padding: 40px; /* Increased padding for taller appearance */
-    box-sizing: border-box;
-    width: 100%;
-    min-height: 300px; /* Added min-height for taller appearance */
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    padding: var(--base-padding);
+    color: var(--font-color);
+    transition: background-color var(--transition-duration) ease-in-out;
 }
 
 h1, h2 {
-    color: var(--primary-color);
+    color: var(--font-color);
     text-align: center;
-    margin-bottom: 30px; /* Increased margin */
+    margin-bottom: var(--base-margin);
     font-weight: 300;
-    letter-spacing: 1px;
 }
 
 h1 {
-    font-size: 2.2rem;
+    font-size: 2.5rem;
     animation: fadeIn var(--transition-duration) ease-in-out;
-    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 h2 {
     font-size: 1.8rem;
-    color: var(--secondary-color);
 }
 
-form {
-    width: 100%;
+/* Center Content */
+form, table {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: var(--base-padding);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
     animation: fadeInUp var(--transition-duration) ease-out;
 }
 
 label {
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     display: block;
-    margin-bottom: 8px;
+    margin-bottom: 10px;
     color: var(--light-font-color);
-    font-weight: 500;
 }
 
 input[type="text"], input[type="number"], textarea, select {
-    padding: 12px;
-    font-size: 1.1rem;
-    margin: 0 0 20px;
+    padding: 10px;
+    font-size: 1rem;
+    margin: 10px 0;
     width: 100%;
     border: 1px solid var(--border-color);
-    border-radius: var(--border-radius);
+    border-radius: 4px;
     box-sizing: border-box;
-    transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
-}
-
-input[type="text"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
-    border-color: var(--primary-color);
-    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
-    outline: none;
 }
 
 button {
-    padding: 14px;
+    padding: 10px 20px;
     background-color: var(--primary-color);
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 1.1rem;
-    font-weight: 500;
+    font-size: 1.2rem;
     width: 100%;
-    border-radius: var(--border-radius);
-    margin-top: 20px;
-    margin-bottom: 20px;
-    transition: all var(--transition-duration);
-    text-transform: uppercase;
-    letter-spacing: 1px;
+    border-radius: 4px;
+    margin-top: var(--base-margin);
+    transition: background-color var(--transition-duration), transform var(--transition-duration);
 }
 
 button:hover {
     background-color: var(--primary-color-hover);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-}
-
-button:active {
-    transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    transform: scale(1.05);
 }
 
 a {
     text-align: center;
-    display: inline-block;
+    display: block;
     color: var(--secondary-color);
     text-decoration: none;
     margin-top: var(--base-margin);
     font-size: 1.2rem;
     animation: fadeInUp var(--transition-duration) ease-out;
-    transition: all var(--transition-duration);
-    border-bottom: 2px solid transparent;
 }
 
 a:hover {
+    text-decoration: underline;
     color: var(--secondary-color-hover);
-    border-bottom: 2px solid var(--secondary-color-hover);
 }
 
-/* ... (rest of the CSS remains the same) ... */
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
 
-/* Responsive Design */
-@media (max-width: 650px) {
-    body {
-        padding: 10px;
-    }
+th, td {
+    padding: 10px;
+    text-align: left;
+    border-bottom: 1px solid var(--border-color);
+}
 
-    .wrapper {
-        max-width: 100%;
-    }
+th {
+    background-color: #f8f8f8;
+}
 
-    .container {
-        padding: 30px;
-        min-height: 250px;
-    }
+/* Animations */
+@keyframes fadeIn {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+}
 
-    h1 {
-        font-size: 2rem;
-    }
+@keyframes fadeInUp {
+    0% { opacity: 0; transform: translateY(20px); }
+    100% { opacity: 1; transform: translateY(0); }
+}
 
-    h2 {
-        font-size: 1.6rem;
-    }
+/* Input Focus Styles */
+input:focus, select:focus {
+    border-color: var(--primary-color);
+    outline: none;
+}
 
-    input[type="text"], input[type="number"], textarea, select, button {
-        font-size: 1rem;
-        padding: 10px;
-    }
+/* Additional Styling */
+textarea {
+    resize: vertical;
+}
+
+input[type="number"] {
+    -moz-appearance: textfield;
+}
+
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form > div {
+    margin-bottom: 15px;
+}
+
+.error-message {
+    color: red;
+    font-size: 0.9rem;
+    margin-top: -10px;
+    margin-bottom: 10px;
 }
