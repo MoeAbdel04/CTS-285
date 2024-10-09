@@ -1,4 +1,5 @@
-/* Define CSS Variables */
+/* Enhanced CSS for Math Practice App */
+
 :root {
     --primary-color: #4CAF50;
     --primary-color-hover: #45a049;
@@ -8,111 +9,161 @@
     --font-color: #333;
     --light-font-color: #555;
     --border-color: #ddd;
-    --box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
     --transition-duration: 0.3s;
     --base-padding: 20px;
     --base-margin: 20px;
+    --border-radius: 8px;
+    --gradient-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
-/* General Styling */
 body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: var(--background-color);
+    font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--gradient-bg);
     margin: 0;
     padding: var(--base-padding);
     color: var(--font-color);
     transition: background-color var(--transition-duration) ease-in-out;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    max-width: 800px;
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.9);
+    border-radius: var(--border-radius);
+    box-shadow: var(--box-shadow);
+    padding: var(--base-padding);
+    margin-bottom: var(--base-margin);
 }
 
 h1, h2 {
-    color: var(--font-color);
+    color: var(--primary-color);
     text-align: center;
     margin-bottom: var(--base-margin);
     font-weight: 300;
+    letter-spacing: 1px;
 }
 
 h1 {
     font-size: 2.5rem;
     animation: fadeIn var(--transition-duration) ease-in-out;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 h2 {
     font-size: 1.8rem;
+    color: var(--secondary-color);
 }
 
-/* Center Content */
 form, table {
-    max-width: 500px;
-    margin: 0 auto;
+    width: 100%;
     padding: var(--base-padding);
     background-color: #fff;
-    border-radius: 8px;
+    border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     animation: fadeInUp var(--transition-duration) ease-out;
 }
 
 label {
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     display: block;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
     color: var(--light-font-color);
+    font-weight: 500;
 }
 
 input[type="text"], input[type="number"], textarea, select {
-    padding: 10px;
+    padding: 12px;
     font-size: 1rem;
-    margin: 10px 0;
+    margin: 8px 0 16px;
     width: 100%;
     border: 1px solid var(--border-color);
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     box-sizing: border-box;
+    transition: border-color var(--transition-duration), box-shadow var(--transition-duration);
+}
+
+input[type="text"]:focus, input[type="number"]:focus, textarea:focus, select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.2);
+    outline: none;
 }
 
 button {
-    padding: 10px 20px;
+    padding: 12px 24px;
     background-color: var(--primary-color);
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 500;
     width: 100%;
-    border-radius: 4px;
+    border-radius: var(--border-radius);
     margin-top: var(--base-margin);
-    transition: background-color var(--transition-duration), transform var(--transition-duration);
+    transition: all var(--transition-duration);
+    text-transform: uppercase;
+    letter-spacing: 1px;
 }
 
 button:hover {
     background-color: var(--primary-color-hover);
-    transform: scale(1.05);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 a {
     text-align: center;
-    display: block;
+    display: inline-block;
     color: var(--secondary-color);
     text-decoration: none;
     margin-top: var(--base-margin);
-    font-size: 1.2rem;
-    animation: fadeInUp var (--transition-duration) ease-out;
+    font-size: 1.1rem;
+    animation: fadeInUp var(--transition-duration) ease-out;
+    transition: all var(--transition-duration);
+    border-bottom: 2px solid transparent;
 }
 
 a:hover {
-    text-decoration: underline;
     color: var(--secondary-color-hover);
+    border-bottom: 2px solid var(--secondary-color-hover);
 }
 
 table {
     width: 100%;
-    border-collapse: collapse;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin-top: var(--base-margin);
 }
 
 th, td {
-    padding: 10px;
+    padding: 12px;
     text-align: left;
     border-bottom: 1px solid var(--border-color);
 }
 
 th {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+tr:last-child td {
+    border-bottom: none;
+}
+
+tr:nth-child(even) {
     background-color: #f8f8f8;
 }
 
@@ -127,44 +178,42 @@ th {
     100% { opacity: 1; transform: translateY(0); }
 }
 
-/* Input Focus Styles */
-input:focus, select:focus {
-    border-color: var(--primary-color);
-    outline: none;
-}
-
 /* Additional Styling */
-textarea {
-    resize: vertical;
-}
-
-input[type="number"] {
-    -moz-appearance: textfield;
-}
-
-input[type="number"]::-webkit-outer-spin-button,
-input[type="number"]::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
-}
-
-button:disabled {
-    background-color: #ccc;
-    cursor: not-allowed;
-}
-
-form {
-    display: flex;
-    flex-direction: column;
-}
-
-form > div {
-    margin-bottom: 15px;
-}
-
 .error-message {
-    color: red;
+    color: #d32f2f;
     font-size: 0.9rem;
     margin-top: -10px;
     margin-bottom: 10px;
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* Responsive Design */
+@media (max-width: 600px) {
+    body {
+        padding: 10px;
+    }
+    
+    .container {
+        padding: 15px;
+    }
+
+    h1 {
+        font-size: 2rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    input[type="text"], input[type="number"], textarea, select, button {
+        font-size: 1rem;
+        padding: 10px;
+    }
 }

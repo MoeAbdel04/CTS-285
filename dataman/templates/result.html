@@ -4,24 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Practice - Solve Problem</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Solve the problem:</h1>
-    <p>{{ problem }}</p>
-    {% if feedback %}
-        <p>{{ feedback }}</p>
-    {% endif %}
-    <form action="/check_answer" method="POST">
-        <label for="answer">Your answer:</label>
-        <input type="text" id="answer" name="answer" required>
-        <button type="submit">Submit</button>
-    </form>
+    <div class="container">
+        <h1>Solve the problem:</h1>
+        <p>{{ problem }}</p>
+        {% if feedback %}
+            <p>{{ feedback }}</p>
+        {% endif %}
+        <form action="/check_answer" method="POST">
+            <label for="answer">Your answer:</label>
+            <input type="text" id="answer" name="answer" required>
+            <button type="submit">Submit</button>
+        </form>
 
-    <form action="/next_question" method="POST">
-        <button type="submit" name="next" value="Next Question">Next Question</button>
-        <button type="submit" name="quit" value="Quit">Quit</button>
-    </form>
-    <br>
+        <form action="/next_question" method="POST">
+            <button type="submit" name="next" value="Next Question">Next Question</button>
+            <button type="submit" name="quit" value="Quit">Quit</button>
+        </form>
+    </div>
 </body>
 </html>

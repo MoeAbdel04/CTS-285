@@ -4,31 +4,34 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Practice - History and Grade</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Your Math Practice History</h1>
-    <h2>Score: {{ score }} / {{ total_questions }}</h2>
-    <h2>Grade: {{ grade }}%</h2>
-    <table>
-        <thead>
-            <tr>
-                <th>Problem</th>
-                <th>Your Answer</th>
-                <th>Result</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for question in questions %}
-            <tr>
-                <td>{{ question.problem }}</td>
-                <td>{{ question.answer }}</td>
-                <td>{{ question.result }}</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
-    <br>
-    <a href="/">Start a new practice session</a>
+    <div class="container">
+        <h1>Your Math Practice History</h1>
+        <h2>Score: {{ score }} / {{ total_questions }}</h2>
+        <h2>Grade: {{ grade }}%</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>Problem</th>
+                    <th>Your Answer</th>
+                    <th>Result</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for question in questions %}
+                <tr>
+                    <td>{{ question.problem }}</td>
+                    <td>{{ question.answer }}</td>
+                    <td>{{ question.result }}</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <br>
+        <a href="/">Start a new practice session</a>
+    </div>
 </body>
 </html>

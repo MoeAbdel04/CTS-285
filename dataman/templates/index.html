@@ -4,18 +4,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Math Practice - Set Difficulty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <h1>Welcome to Math Practice!</h1>
-    <form action="/set_difficulty" method="POST">
-        <label for="difficulty">Select difficulty:</label>
-        <select name="difficulty" id="difficulty" aria-label="Select difficulty level">
-            <option value="easy">Easy</option>
-            <option value="medium">Medium</option>
-            <option value="hard">Hard</option>
-        </select>
-        <button type="submit" aria-label="Start Practice">Start Practice</button>
-    </form>
+    <div class="container">
+        <h1>Welcome to Math Practice!</h1>
+        <form action="/set_difficulty" method="POST">
+            <label for="difficulty">Select difficulty:</label>
+            <select name="difficulty" id="difficulty" aria-label="Select difficulty level">
+                <option value="easy">Easy</option>
+                <option value="medium">Medium</option>
+                <option value="hard">Hard</option>
+            </select>
+            <button type="submit" aria-label="Start Practice">Start Practice</button>
+        </form>
+    </div>
 </body>
 </html>
