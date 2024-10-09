@@ -1,4 +1,4 @@
-/* Enhanced CSS for Math Practice App */
+/* Enhanced CSS for Math Practice App with Two Containers */
 
 :root {
     --primary-color: #4CAF50;
@@ -17,32 +17,34 @@
     --gradient-bg: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
 }
 
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
 body {
     font-family: 'Roboto', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: var(--gradient-bg);
     color: var(--font-color);
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px;
     box-sizing: border-box;
 }
 
-.container {
-    max-width: 400px;
+.wrapper {
+    max-width: 1000px;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.container {
     background-color: #ffffff;
     border-radius: var(--border-radius);
     box-shadow: var(--box-shadow);
     padding: 30px;
     box-sizing: border-box;
+    width: 100%;
 }
 
 h1, h2 {
@@ -54,26 +56,23 @@ h1, h2 {
 }
 
 h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     animation: fadeIn var(--transition-duration) ease-in-out;
     text-shadow: 2px 2px 4px rgba(0,0,0,0.1);
 }
 
 h2 {
-    font-size: 1.8rem;
+    font-size: 2rem;
     color: var(--secondary-color);
 }
 
 form {
     width: 100%;
-    padding: 0;
-    background-color: transparent;
-    box-shadow: none;
     animation: fadeInUp var(--transition-duration) ease-out;
 }
 
 label {
-    font-size: 1rem;
+    font-size: 1.1rem;
     display: block;
     margin-bottom: 5px;
     color: var(--light-font-color);
@@ -81,8 +80,8 @@ label {
 }
 
 input[type="text"], input[type="number"], textarea, select {
-    padding: 10px;
-    font-size: 1rem;
+    padding: 12px;
+    font-size: 1.1rem;
     margin: 0 0 15px;
     width: 100%;
     border: 1px solid var(--border-color);
@@ -98,17 +97,17 @@ input[type="text"]:focus, input[type="number"]:focus, textarea:focus, select:foc
 }
 
 button {
-    padding: 12px;
+    padding: 14px;
     background-color: var(--primary-color);
     color: white;
     border: none;
     cursor: pointer;
-    font-size: 1rem;
+    font-size: 1.1rem;
     font-weight: 500;
     width: 100%;
     border-radius: var(--border-radius);
-    margin-top: 10px;
-    margin-bottom: 10px;
+    margin-top: 15px;
+    margin-bottom: 15px;
     transition: all var(--transition-duration);
     text-transform: uppercase;
     letter-spacing: 1px;
@@ -131,7 +130,7 @@ a {
     color: var(--secondary-color);
     text-decoration: none;
     margin-top: var(--base-margin);
-    font-size: 1.1rem;
+    font-size: 1.2rem;
     animation: fadeInUp var(--transition-duration) ease-out;
     transition: all var(--transition-duration);
     border-bottom: 2px solid transparent;
@@ -171,11 +170,6 @@ tr:nth-child(even) {
     background-color: #f8f8f8;
 }
 
-/* Remove any extra spacing between forms */
-form + form {
-    margin-top: 10px;
-}
-
 /* Animations */
 @keyframes fadeIn {
     0% { opacity: 0; }
@@ -190,7 +184,7 @@ form + form {
 /* Additional Styling */
 .error-message {
     color: #d32f2f;
-    font-size: 0.9rem;
+    font-size: 1rem;
     margin-top: -10px;
     margin-bottom: 10px;
     animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
@@ -204,9 +198,13 @@ form + form {
 }
 
 /* Responsive Design */
-@media (max-width: 450px) {
+@media (max-width: 768px) {
     body {
         padding: 10px;
+    }
+
+    .wrapper {
+        max-width: 100%;
     }
 
     .container {
@@ -214,15 +212,15 @@ form + form {
     }
 
     h1 {
-        font-size: 1.8rem;
+        font-size: 2rem;
     }
 
     h2 {
-        font-size: 1.5rem;
+        font-size: 1.8rem;
     }
 
     input[type="text"], input[type="number"], textarea, select, button {
-        font-size: 0.9rem;
+        font-size: 1rem;
         padding: 10px;
     }
 }
