@@ -7,22 +7,20 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 </head>
 <body>
-    <div class="container">
-        <h1>Solve the problem:</h1>
-        <div class="problem">{{ problem }}</div>
-        {% if feedback %}
-            <p class="feedback">{{ feedback }}</p>
-        {% endif %}
-        <form action="/check_answer" method="POST">
-            <label for="answer">Your answer:</label>
-            <input type="text" id="answer" name="answer" required>
-            <button type="submit">Submit</button>
-        </form>
+    <h1>Solve the problem:</h1>
+    <p>{{ problem }}</p>
+    {% if feedback %}
+        <p>{{ feedback }}</p>
+    {% endif %}
+    <form action="/check_answer" method="POST">
+        <label for="answer">Your answer:</label>
+        <input type="text" id="answer" name="answer" required>
+        <button type="submit">Submit</button>
+    </form>
 
-        <form action="/next_question" method="POST">
-            <button type="submit" name="next" value="Next Question">Next Question</button>
-            <button type="submit" name="quit" value="Quit">Quit</button>
-        </form>
-    </div>
+    <form action="/next_question" method="POST">
+        <button type="submit" name="next" value="Next Question">Next Question</button>
+        <button type="submit" name="quit" value="Quit">Quit</button>
+    </form>
 </body>
 </html>
