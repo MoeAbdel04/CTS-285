@@ -22,6 +22,21 @@ body {
     padding: var(--base-padding);
     color: var(--font-color);
     transition: background-color var(--transition-duration) ease-in-out;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    max-width: 500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: var(--base-padding);
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: var(--box-shadow);
+    animation: fadeInUp var(--transition-duration) ease-out;
 }
 
 h1, h2 {
@@ -40,15 +55,13 @@ h2 {
     font-size: 1.8rem;
 }
 
-/* Center Content */
-form, table {
-    max-width: 500px;
-    margin: 0 auto;
-    padding: var(--base-padding);
-    background-color: #fff;
-    border-radius: 8px;
-    box-shadow: var(--box-shadow);
-    animation: fadeInUp var(--transition-duration) ease-out;
+.problem {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: var(--base-margin);
+    padding: 10px;
+    background-color: #f8f8f8;
+    border-radius: 4px;
 }
 
 label {
@@ -167,4 +180,10 @@ form > div {
     font-size: 0.9rem;
     margin-top: -10px;
     margin-bottom: 10px;
+}
+
+.feedback {
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: var(--base-margin);
 }
