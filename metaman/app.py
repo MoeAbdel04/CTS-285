@@ -85,16 +85,18 @@ def question():
         return redirect(url_for('index'))
 
     if request.method == 'POST':
-        user_answer = request.form['answer']
+        # Get the current question
         question_id = session['quiz_questions'][session['question_index']]
         question = Question.query.get(question_id)
+        user_answer = request.form['answer']
 
-        # Update score if the answer is correct
+        # Update the score if the user's answer is correct
         if user_answer.lower().strip() == question.answer.lower().strip():
             session['score'] += 1
-
-        # Increment question index to move to the next question
+        
+        # Increment the question index to move to the next question
         session['question_index'] += 1
+        session.modified = True  # Ensure the session gets updated
 
     # Check if there are more questions to display
     if session['question_index'] < len(session['quiz_questions']):
@@ -113,6 +115,7 @@ def question():
         db.session.add(new_session)
         db.session.commit()
         return redirect(url_for('results'))
+
 
 # Results Route
 @app.route('/results')
