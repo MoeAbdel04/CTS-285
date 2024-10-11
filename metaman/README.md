@@ -7,8 +7,12 @@ Metaman --- testing flask integration
 - source venv/bin/activate
 
 - pip install flask
-  
+
+- pip install -r requirements.txt
+
 - pip freeze > requirements.txt
+
+- python app.py
 
 - cd (folder name) to run commands in the folder for the program
 
