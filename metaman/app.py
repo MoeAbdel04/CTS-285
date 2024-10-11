@@ -53,6 +53,8 @@ def quiz(subject, difficulty):
     if questions:
         random.shuffle(questions)
         session['quiz_questions'] = [q.id for q in questions]
+        session['subject'] = subject
+        session['difficulty'] = difficulty
         session['score'] = 0
         session['question_index'] = 0
         return redirect(url_for('question'))
