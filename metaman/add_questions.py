@@ -1,6 +1,7 @@
-from app import db
+from app import app, db
 from models import Question
 
+# Extended list of questions for better quiz content coverage
 questions = [
     # Math - Easy
     {'subject': 'math', 'difficulty': 'easy', 'text': 'What is 5 + 7?', 'answer': '12', 'hint': 'Add the numbers', 'explanation': '5 plus 7 equals 12.'},
@@ -60,5 +61,5 @@ def add_questions():
     print("Questions added successfully.")
 
 if __name__ == '__main__':
-    with db.app.app_context():
+    with app.app_context():
         add_questions()
