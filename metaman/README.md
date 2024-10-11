@@ -16,6 +16,8 @@ Metaman --- testing flask integration
 
 - cd (folder name) to run commands in the folder for the program
 
+- set SECRET_KEY=your_secret_key
+
 - flask --debug --app app run
 
 - Control c to quit
