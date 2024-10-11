@@ -81,29 +81,43 @@ def question():
         flash("No quiz in progress.")
         return redirect(url_for('index'))
 
+    # Debug: Print session state
     print("Session data at /question:", session)
 
+    # Handle the answer submitted by the user
     if request.method == 'POST':
         user_answer = request.form['answer']
         question_id = session['quiz_questions'][session['question_index']]
         question = Question.query.get(question_id)
 
+        # Debug: Check user answer and the correct answer
         print(f"User Answer: {user_answer}, Correct Answer: {question.answer}")
 
+        # Update score if the answer is correct
         if user_answer.lower() == question.answer.lower():
             session['score'] += 1
+
+        # Increment question index to move to the next question
         session['question_index'] += 1
 
+    # Check if there are more questions to display
     if session['question_index'] < len(session['quiz_questions']):
         question = Question.query.get(session['quiz_questions'][session['question_index']])
         return render_template('question.html', question=question)
     else:
-        new_session = QuizSession(user_id=session['user_id'], subject=session['subject'],
-                                  difficulty=session['difficulty'], score=session['score'],
-                                  total_questions=len(session['quiz_questions']), timestamp=datetime.now())
+        # All questions have been answered, redirect to the results page
+        new_session = QuizSession(
+            user_id=session['user_id'],
+            subject=session['subject'],
+            difficulty=session['difficulty'],
+            score=session['score'],
+            total_questions=len(session['quiz_questions']),
+            timestamp=datetime.now()
+        )
         db.session.add(new_session)
         db.session.commit()
         return redirect(url_for('results'))
+
 
 # Results Route
 @app.route('/results')
