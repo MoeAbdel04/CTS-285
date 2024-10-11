@@ -122,6 +122,12 @@ def leaderboard():
     leaderboard_data = QuizSession.query.order_by(QuizSession.score.desc()).limit(10).all()
     return render_template('leaderboard.html', leaderboard=leaderboard_data)
 
+@app.route('/reset_session')
+def reset_session():
+    session.clear()
+    flash("Session has been reset.")
+    return redirect(url_for('index'))
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
