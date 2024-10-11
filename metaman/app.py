@@ -142,6 +142,14 @@ def reset_session():
     flash("Session has been reset.")
     return redirect(url_for('index'))
 
+@app.route('/profile')
+def profile():
+    if 'user_id' not in session:
+        return redirect(url_for('login'))
+    user = User.query.get(session['user_id'])
+    return render_template('profile.html', user=user)
+
+
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
