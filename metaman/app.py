@@ -80,20 +80,20 @@ def quiz(subject, difficulty):
 # Question Route
 @app.route('/question', methods=['GET', 'POST'])
 def question():
-    if 'quiz_questions' not in session:
+    if 'quiz_questions' not in session or 'question_index' not in session:
         flash("No quiz in progress.")
         return redirect(url_for('index'))
 
     if request.method == 'POST':
-        # Get the current question
+        # Get the current question ID
         question_id = session['quiz_questions'][session['question_index']]
         question = Question.query.get(question_id)
         user_answer = request.form['answer']
 
-        # Update the score if the user's answer is correct
+        # Update the score if the answer is correct
         if user_answer.lower().strip() == question.answer.lower().strip():
             session['score'] += 1
-        
+
         # Increment the question index to move to the next question
         session['question_index'] += 1
         session.modified = True  # Ensure the session gets updated
@@ -115,6 +115,7 @@ def question():
         db.session.add(new_session)
         db.session.commit()
         return redirect(url_for('results'))
+
 
 
 # Results Route
