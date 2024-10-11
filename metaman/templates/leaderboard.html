@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+    <h2>Leaderboard</h2>
+    <table>
+        <tr>
+            <th>Rank</th>
+            <th>Username</th>
+            <th>Subject</th>
+            <th>Difficulty</th>
+            <th>Score</th>
+        </tr>
+        {% for entry in leaderboard %}
+        <tr>
+            <td>{{ loop.index }}</td>
+            <td>{{ entry.user.username }}</td>
+            <td>{{ entry.subject }}</td>
+            <td>{{ entry.difficulty }}</td>
+            <td>{{ entry.score }} / {{ entry.total_questions }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+{% endblock %}
