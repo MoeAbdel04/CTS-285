@@ -156,6 +156,20 @@ def logout():
     flash("You have been logged out successfully.")
     return redirect(url_for('login'))
 
+@app.route('/profile')
+def profile():
+    # Check if the user is logged in
+    if 'user_id' not in session:
+        flash("Please log in to view your profile.")
+        return redirect(url_for('login'))
+    
+    # Get the logged-in user's information
+    user = User.query.get(session['user_id'])
+    
+    # Render the profile page with the user's information
+    return render_template('profile.html', user=user)
+
+
 
 
 if __name__ == '__main__':

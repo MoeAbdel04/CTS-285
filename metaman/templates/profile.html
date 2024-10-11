@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+    <div class="profile-container">
+        <h2>Your Profile</h2>
+        <div class="profile-info">
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Joined on:</strong> {{ user.quizzes[0].timestamp.strftime("%B %d, %Y") if user.quizzes else "N/A" }}</p>
+            <a href="{{ url_for('index') }}"><button class="profile-button">Take a New Quiz</button></a>
+        </div>
+    </div>
+{% endblock %}
