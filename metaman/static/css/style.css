@@ -13,6 +13,7 @@ button {
     padding: 10px 20px;
     cursor: pointer;
     transition: 0.3s;
+    margin: 5px;
 }
 
 button:hover {
@@ -28,16 +29,41 @@ button:hover {
     margin-top: 20px;
 }
 
-.subject {
+.subject-card {
     background-color: #1a1a1a;
     border-radius: 8px;
     padding: 20px;
-    width: 200px;
+    width: 250px;
     text-align: center;
     box-shadow: 0px 0px 15px rgba(0, 255, 204, 0.5);
     transition: transform 0.3s ease;
 }
 
-.subject:hover {
+.subject-card:hover {
     transform: scale(1.05);
+}
+
+.difficulty-buttons {
+    margin-top: 10px;
+}
+
+.difficulty {
+    border-radius: 5px;
+    padding: 10px 15px;
+}
+
+.easy {
+    background-color: #4caf50; /* Green */
+}
+
+.medium {
+    background-color: #ffa500; /* Orange */
+}
+
+.hard {
+    background-color: #f44336; /* Red */
+}
+
+.difficulty:hover {
+    opacity: 0.8;
 }
