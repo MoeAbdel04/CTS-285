@@ -149,6 +149,14 @@ def profile():
     user = User.query.get(session['user_id'])
     return render_template('profile.html', user=user)
 
+@app.route('/logout')
+def logout():
+    # Clear the user session to log them out
+    session.clear()
+    flash("You have been logged out successfully.")
+    return redirect(url_for('login'))
+
+
 
 if __name__ == '__main__':
     with app.app_context():
