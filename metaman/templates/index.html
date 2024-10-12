@@ -7,13 +7,13 @@
                 <h3>{{ subject.capitalize() }}</h3>
                 <div class="difficulty-buttons">
                     <a href="{{ url_for('quiz', subject=subject, difficulty='easy') }}">
-                        <button>Easy</button>
+                        <button class="easy">Easy</button>
                     </a>
                     <a href="{{ url_for('quiz', subject=subject, difficulty='medium') }}">
-                        <button>Medium</button>
+                        <button class="medium">Medium</button>
                     </a>
                     <a href="{{ url_for('quiz', subject=subject, difficulty='hard') }}">
-                        <button>Hard</button>
+                        <button class="hard">Hard</button>
                     </a>
                 </div>
             </div>

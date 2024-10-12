@@ -43,6 +43,17 @@ nav {
     color: #333;
 }
 
+/* Highlight Home Button */
+.nav-links a.home-button {
+    background-color: #00ffcc;
+    color: #333;
+}
+
+.nav-links a.home-button:hover {
+    background-color: #333;
+    color: #00ffcc;
+}
+
 /* Form Styles */
 input[type="text"], input[type="password"] {
     padding: 15px;
@@ -63,8 +74,6 @@ input[type="text"]:focus, input[type="password"]:focus {
 
 /* Button Styles */
 button {
-    background-color: #333;
-    color: #00ffcc;
     border: none;
     padding: 15px 25px;
     border-radius: 8px;
@@ -75,9 +84,38 @@ button {
 }
 
 button:hover {
-    background-color: #00ffcc;
-    color: #333;
     transform: translateY(-3px);
+}
+
+/* Button Styles with Differentiated Colors */
+button.easy {
+    background-color: #00cc99;  /* Vibrant greenish-teal for Easy */
+    color: #333;
+}
+
+button.easy:hover {
+    background-color: #008060;  /* Darker shade for hover effect */
+    color: #ffffff;
+}
+
+button.medium {
+    background-color: #ffcc00;  /* Bright yellow for Medium */
+    color: #333;
+}
+
+button.medium:hover {
+    background-color: #cc9900;  /* Darker yellow shade for hover effect */
+    color: #ffffff;
+}
+
+button.hard {
+    background-color: #ff6666;  /* Bright red for Hard */
+    color: #333;
+}
+
+button.hard:hover {
+    background-color: #cc3333;  /* Darker red for hover effect */
+    color: #ffffff;
 }
 
 /* Subject Selection Styles */
@@ -85,15 +123,15 @@ button:hover {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 30px;
-    margin-top: 30px;
+    gap: 50px;  /* Increased gap for better spacing between containers */
+    margin-top: 40px;
 }
 
 .subject {
     background-color: #1a1a1a;
     border-radius: 12px;
-    padding: 25px;
-    width: 220px;
+    padding: 30px;
+    width: 240px;
     text-align: center;
     box-shadow: 0px 0px 20px rgba(0, 255, 204, 0.6);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -106,12 +144,12 @@ button:hover {
 
 .subject h3 {
     font-size: 1.6em;
-    margin-bottom: 15px;
+    margin-bottom: 20px;
 }
 
 .difficulty-buttons {
     display: flex;
-    gap: 10px;
+    gap: 15px;
     justify-content: center;
 }
 
@@ -119,7 +157,7 @@ button:hover {
 .leaderboard-container {
     display: flex;
     justify-content: center;
-    margin: 20px auto;
+    margin: 40px auto;
     max-width: 90%;
 }
 
