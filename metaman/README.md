@@ -1,4 +1,5 @@
-Metaman --- testing flask integration 
+# Metaman project --- testing flask integration 
+# Mahamed Abdel
 
 
 SETTING UP VENV
