@@ -2,25 +2,21 @@
 {% block content %}
     <h2>Select a Subject</h2>
     <div class="subject-selection">
-        {% if subjects %}
-            {% for subject in subjects %}
-                <div class="subject-card">
-                    <h3>{{ subject.capitalize() }}</h3>
-                    <div class="difficulty-buttons">
-                        <a href="{{ url_for('quiz', subject=subject, difficulty='easy') }}">
-                            <button class="difficulty easy">Easy</button>
-                        </a>
-                        <a href="{{ url_for('quiz', subject=subject, difficulty='medium') }}">
-                            <button class="difficulty medium">Medium</button>
-                        </a>
-                        <a href="{{ url_for('quiz', subject=subject, difficulty='hard') }}">
-                            <button class="difficulty hard">Hard</button>
-                        </a>
-                    </div>
+        {% for subject in subjects %}
+            <div class="subject">
+                <h3>{{ subject.capitalize() }}</h3>
+                <div class="difficulty-buttons">
+                    <a href="{{ url_for('quiz', subject=subject, difficulty='easy') }}">
+                        <button>Easy</button>
+                    </a>
+                    <a href="{{ url_for('quiz', subject=subject, difficulty='medium') }}">
+                        <button>Medium</button>
+                    </a>
+                    <a href="{{ url_for('quiz', subject=subject, difficulty='hard') }}">
+                        <button>Hard</button>
+                    </a>
                 </div>
-            {% endfor %}
-        {% else %}
-            <p>No subjects available. Please add questions to the database.</p>
-        {% endif %}
+            </div>
+        {% endfor %}
     </div>
 {% endblock %}
