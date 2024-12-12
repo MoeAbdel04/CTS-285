@@ -1,9 +1,12 @@
 from flask import Flask, render_template, request, redirect, url_for, session, flash
 from werkzeug.security import generate_password_hash, check_password_hash
-from models import db, User, QuizSession, Question
+from models import db, User, QuizSession, Question  # Updated import path to fix ModuleNotFoundError
 from datetime import datetime
 import random
+import webview
+from threading import Thread
 
+# Flask App Initialization
 app = Flask(__name__)
 app.config.from_object('config')
 db.init_app(app)
@@ -15,11 +18,11 @@ def register():
         username = request.form['username']
         password = request.form['password']
         existing_user = User.query.filter_by(username=username).first()
-        
+
         if existing_user:
             flash('Username already exists. Please choose a different one.')
             return redirect(url_for('register'))
-        
+
         hashed_password = generate_password_hash(password, method='pbkdf2:sha256')
         user = User(username=username, password=hashed_password)
         db.session.add(user)
@@ -35,7 +38,7 @@ def login():
         username = request.form['username']
         password = request.form['password']
         user = User.query.filter_by(username=username).first()
-        
+
         if user and check_password_hash(user.password, password):
             session['user_id'] = user.id
             flash(f'Welcome back, {username}!')
@@ -85,25 +88,20 @@ def question():
         return redirect(url_for('index'))
 
     if request.method == 'POST':
-        # Get the current question ID
         question_id = session['quiz_questions'][session['question_index']]
         question = Question.query.get(question_id)
         user_answer = request.form['answer']
 
-        # Update the score if the answer is correct
         if user_answer.lower().strip() == question.answer.lower().strip():
             session['score'] += 1
 
-        # Increment the question index to move to the next question
         session['question_index'] += 1
-        session.modified = True  # Ensure the session gets updated
+        session.modified = True
 
-    # Check if there are more questions to display
     if session['question_index'] < len(session['quiz_questions']):
         question = Question.query.get(session['quiz_questions'][session['question_index']])
         return render_template('question.html', question=question)
     else:
-        # All questions have been answered, redirect to the results page
         new_session = QuizSession(
             user_id=session['user_id'],
             subject=session['subject'],
@@ -116,15 +114,13 @@ def question():
         db.session.commit()
         return redirect(url_for('results'))
 
-
-
 # Results Route
 @app.route('/results')
 def results():
     if 'score' not in session or 'quiz_questions' not in session:
         flash("No results to display.")
         return redirect(url_for('index'))
-    
+
     score = session['score']
     total = len(session['quiz_questions'])
     return render_template('results.html', score=score, total=total)
@@ -141,12 +137,19 @@ def profile():
     if 'user_id' not in session:
         flash("Please log in to view your profile.")
         return redirect(url_for('login'))
-    
+
     user = User.query.get(session['user_id'])
     user_quizzes = QuizSession.query.filter_by(user_id=user.id).order_by(QuizSession.timestamp.desc()).all()
     return render_template('profile.html', user=user, quizzes=user_quizzes)
 
+# Start Flask Server in Webview
 if __name__ == '__main__':
-    with app.app_context():
-        db.create_all()
-    app.run(debug=True)
+    def run_flask():
+        app.run(port=5000, debug=False)
+
+    flask_thread = Thread(target=run_flask)
+    flask_thread.daemon = True
+    flask_thread.start()
+
+    webview.create_window('Futuristic Answer Checker', 'http://127.0.0.1:5000')
+    webview.start()
